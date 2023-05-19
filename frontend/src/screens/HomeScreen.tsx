@@ -1,9 +1,20 @@
+import { useState, useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import products from '../products';
+import axios from 'axios';
 import Product from '../components/Product';
-import { useLoaderData, useParams } from 'react-router-dom';
+import { IProduct } from '../components/types';
 
 function HomeScreen() {
+  const [products, setProducts] = useState<IProduct[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get('/api/products');
+      setProducts(data);
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <>
