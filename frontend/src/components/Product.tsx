@@ -1,7 +1,7 @@
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { IProduct } from './types';
 import Rating from './Rating';
+import { IProduct } from '../store/reducers/types';
 
 type Props = {
   product: IProduct;

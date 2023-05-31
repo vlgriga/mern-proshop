@@ -2,6 +2,9 @@
   font-family: 'Roboto', sans-serif;
 }
 
+h1 {
+  margin-bottom: 2rem;
+}
 
 main {
   min-height: 30rem;
