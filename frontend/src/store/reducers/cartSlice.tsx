@@ -1,12 +1,21 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ICartProduct } from './types';
+import { createSlice } from '@reduxjs/toolkit';
+import { ICartProduct, IShippingAddress } from './types';
 
 export interface CartState {
   list: ICartProduct[];
+  shippingAddress: IShippingAddress;
+  paymentMethod: string;
 }
 
 const initialState: CartState = {
   list: [],
+  shippingAddress: {
+    address: '',
+    city: '',
+    postalCode: '',
+    country: '',
+  },
+  paymentMethod: '',
 };
 
 export const cartSlice = createSlice({
@@ -28,8 +37,19 @@ export const cartSlice = createSlice({
     removeFromCart: (state, action) => {
       state.list = state.list.filter((item) => item._id !== action.payload);
     },
+    saveShippingAddress: (state, action) => {
+      state.shippingAddress = action.payload;
+    },
+    savePaymentMethod: (state, action) => {
+      state.paymentMethod = action.payload;
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  saveShippingAddress,
+  savePaymentMethod,
+} = cartSlice.actions;
 export default cartSlice.reducer;

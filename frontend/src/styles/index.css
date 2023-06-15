@@ -6,6 +6,15 @@ h1 {
   margin-bottom: 2rem;
 }
 
+h2 {
+  font-weight: 400 !important;
+}
+
 main {
   min-height: 30rem;
+}
+
+.list-group-item {
+  padding: 16px;
+  margin: 8px;
 }

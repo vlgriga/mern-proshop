@@ -29,7 +29,11 @@ const ProductCard = ({ product }: Props) => {
 
   const onAddToCart = () => {
     console.log(count);
-    const cartProduct = { ...product, qty: Number(count) };
+    const cartProduct = {
+      ...product,
+      product: product._id,
+      qty: Number(count),
+    };
     dispatch(addToCart({ product: cartProduct }));
     navigate(`/cart`);
   };

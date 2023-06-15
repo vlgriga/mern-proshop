@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Button, Form, Row, Col } from 'react-bootstrap';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { updateProfileDetails } from '../store/reducers/userSlice';
 import Message from '../components/Message';
+import OrdersTable from '../components/OrdersTable';
 
 const ProfileScreen = () => {
   const dispatch = useAppDispatch();
@@ -105,6 +106,7 @@ const ProfileScreen = () => {
       </Col>
       <Col md={9}>
         <h1>My orders</h1>
+        <OrdersTable token={userInfo?.token} />
       </Col>
     </Row>
   );

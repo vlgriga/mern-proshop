@@ -6,9 +6,7 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { login } from '../store/reducers/userSlice';
 import Message from '../components/Message';
 
-type Props = {};
-
-function LoginScreen({}: Props) {
+function LoginScreen() {
   const [state, setState] = useState({ email: '', password: '' });
   const [searchParams] = useSearchParams();
   const redirect = searchParams.get('redirect') || '';

@@ -56,7 +56,7 @@ function RegisterScreen() {
         <Form.Group controlId='name' className='my-4'>
           <Form.Label>Name</Form.Label>
           <Form.Control
-            type='name'
+            type='text'
             placeholder='Enter name'
             value={state.name}
             onChange={inputHandler}

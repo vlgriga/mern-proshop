@@ -12,22 +12,22 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import productListSlice from './reducers/productListSlice';
-import productDetailsSlice from './reducers/productDetailsSlice';
 import cartSlice from './reducers/cartSlice';
 import userSlice from './reducers/userSlice';
+import orderSlice from './reducers/orderSlice';
+import { apiSlice } from './reducers/apiSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['cartItems'],
+  whitelist: ['cart', 'user'],
 };
 
 const rootReducer = combineReducers({
-  productList: productListSlice,
-  productDetails: productDetailsSlice,
-  cartItems: cartSlice,
+  [apiSlice.reducerPath]: apiSlice.reducer,
+  cart: cartSlice,
   user: userSlice,
+  order: orderSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -39,7 +39,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(apiSlice.middleware),
 });
 
 export const persistor = persistStore(store);

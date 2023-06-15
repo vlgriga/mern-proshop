@@ -1,30 +1,22 @@
-import { useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Product from '../components/Product';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { fetchProductList } from '../store/reducers/productListSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import { useGetProductsQuery } from '../store/reducers/productApiSlice';
 
 function HomeScreen() {
-  const dispath = useAppDispatch();
-  const products = useAppSelector((state) => state.productList);
-  const { list, loading, error } = products;
-
-  useEffect(() => {
-    dispath(fetchProductList());
-  }, [dispath]);
+  const { data: list = [], isLoading, error } = useGetProductsQuery({});
 
   return (
     <>
       <h1>Latest Products</h1>
       <Row>
-        {loading ? (
+        {isLoading ? (
           <Loader />
         ) : error ? (
-          <Message variant='danger'>{error}</Message>
+          <Message variant='danger'>{error.toString()}</Message>
         ) : (
-          list.map((product) => (
+          list.map((product: any) => (
             <Col sm={12} md={6} lg={4} key={product._id}>
               <Product product={product} />
             </Col>
